@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Random;
 
 public class Parte2 {
@@ -157,6 +158,102 @@ public class Parte2 {
         System.out.println("\nEl valor es: " + cache2);
     }
 
+    // Funcion para ordenar de forma descendente
+    public static void sortDesc ( int[] value ) {
+
+        // Crea una copia del array original
+        int[] ogArr = Arrays.copyOf(value, value.length);
+        
+        // Recorre el array
+        for ( int i = 0; i < value.length; i++ ) {
+
+            // Recorre nuevamente el array
+            for ( int j = 0; j < value.length; j++ ) {
+
+                // si value[i] es mayor que value[j] los intercambia
+                if ( value[i] > value[j] ) {
+
+                    int temp = value[j];
+
+                    value[j] = value[i];
+
+                    value[i] = temp;
+                    
+                }
+                
+            }
+            
+        }
+
+        System.out.println("==========");
+
+        System.out.print("Se ordeno el array de forma desenciente: ");
+
+        for (int i = 0; i < value.length; i++) {
+
+            System.out.print(value[i] + " ");
+
+        }
+
+        System.out.print("\nEl array original era: ");
+
+        for (int i = 0; i < ogArr.length; i++) {
+
+            System.out.print(ogArr[i] + " ");
+
+        }
+        System.out.println("");
+
+    }
+
+    // Funcion para ordenar de forma ascendente
+    public static void sortAsc ( int[] value ) {
+
+        // Crea una copia del array original
+        int[] ogArr = Arrays.copyOf(value, value.length);
+        
+        // Recorre el array
+        for ( int i = 0; i < value.length; i++ ) {
+
+            // Recorre nuevamente el array
+            for ( int j = 0; j < value.length; j++ ) {
+
+                // si value[i] es menor que value[j] los intercambia
+                if ( value[i] < value[j] ) {
+
+                    int temp = value[j];
+
+                    value[j] = value[i];
+
+                    value[i] = temp;
+                    
+                }
+                
+            }
+            
+        }
+
+        System.out.println("==========");
+        
+        System.out.print("Se ordeno el array de forma ascendente: ");
+
+        for (int i = 0; i < value.length; i++) {
+
+            System.out.print(value[i] + " ");
+
+        }
+
+        System.out.print("\nEl array original era: ");
+
+        for (int i = 0; i < ogArr.length; i++) {
+
+            System.out.print(ogArr[i] + " ");
+
+        }
+        System.out.println("");
+
+    }
+
     public static void main(String[] args) {
 
         // Variables para usar más adelante
@@ -191,11 +288,15 @@ public class Parte2 {
         promedio /= ventas.length;
         System.out.println("El promedio de ventas es " + promedio + "\n");
 
+        System.out.println("==========");
+
         highSell(ventas);
         lowSell(ventas);
         totalSell(ventas);
         averagePrice(ventas);
-        closeAverage(ventas);
+        // closeAverage(ventas);
+        sortDesc(ventas);
+        sortAsc(ventas);
 
     }
 
