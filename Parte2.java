@@ -20,7 +20,7 @@ public class Parte2 {
             }
 
         }
-        
+
         System.out.println("La mayor venta fue de " + high);
     }
 
@@ -90,35 +90,71 @@ public class Parte2 {
         // Crea una variable para contabilizar el total de ventas
         int promedio = 0;
 
-        int[] arrayValues = new int[value.length];
-
-        int[] steps = new int[value.length];
-
         // Recorre el array
         for ( int i = 0; i < value.length; i++ ) {
 
             // Sumarle a promedio de venta el valor del array en i
             promedio += value[i];
 
-            // Agrega el valor de value en i en i de arrayValues
-            arrayValues[i] = value[i];
-
         }
 
         // Divide la suma total de los valores entre la longitud
         promedio /= value.length;
 
-        for ( int i = 0; i < arrayValues.length; i++ ) {
-            
-            while ( arrayValues[i] ) {
-                
+        // Crea un array para contabilizar los valores
+        int[] cacheArray = new int[value.length];
+
+        // Crea unas variables para usar más adelante
+        int cache = 0;
+        int cache2 = 0;
+        int inArrPos = 0;
+
+        System.out.println("Calculando el valor más cerca del promedio de las ventas");
+
+        // Recorre el array
+        for ( int i = 0; i < value.length; i++ ) {
+
+            // Si el valor es mayor que el promedio aumenta cache hasta que sea igual al valor
+            if ( value[i] > promedio ) {
+
+                while ( cache != value[i] ) {
+
+                    cache++;
+
+                } 
+
+            // Si el valor es menor que el promedio reduce cache hasta que sea igual al valor
+            } else {
+
+                while ( cache != value[i] ) {
+
+                    cache--;
+
+                } 
+
             }
 
-        }
-        
+            // Almacena el valor de cache en la posición actual del array cacheArray
+            cacheArray[inArrPos] = cache;
 
-        System.out.println("El promedio de las ventas es de " + promedio);
-        
+            // Cambia el valor de inArrPos para el siguiente valor
+            inArrPos++;
+
+            System.out.print(".");
+
+        }
+
+        for ( int i = 0; i < cacheArray.length; i++ ) {
+            // Si el valor actual de cacheArray es menor que cache2, almacena ese valor en cache
+            if (cacheArray[i] < cache2) {
+                cache = cacheArray[i];
+            }
+        }
+
+        // Almacena el valor final de cache en cache2
+        cache2 = cache;
+
+        System.out.println("\nEl valor es: " + cache2);
     }
 
     public static void main(String[] args) {
@@ -131,7 +167,8 @@ public class Parte2 {
         
         // Declarar un arreglo de enteros en una variable llamada ventas,
         // Inicializar el arreglo ventas con una cantidad aleatoria de elementos.
-        int[] ventas = new int[ randomInt.nextInt(50) ];
+        int[] ventas = new int[ 5 ];
+        // int[] ventas = new int[ randomInt.nextInt(50) ];
 
         // Llenar el arreglo ventas con valores aleatorios entre 1 y 1000
         for (int i = 0; i < ventas.length; i++) {
@@ -152,12 +189,13 @@ public class Parte2 {
         }
         // Divide la suma total de los valores entre la longitud
         promedio /= ventas.length;
-        System.out.println("El promedio de ventas es " + promedio);
+        System.out.println("El promedio de ventas es " + promedio + "\n");
 
         highSell(ventas);
         lowSell(ventas);
         totalSell(ventas);
         averagePrice(ventas);
+        closeAverage(ventas);
 
     }
 
