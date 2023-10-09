@@ -254,6 +254,55 @@ public class Parte2 {
 
     }
 
+    // Funcion para ordenar de forma ascendente
+    public static void unsort ( int[] value ) {
+
+        // Crea una copia del array original
+        int[] ogArr = Arrays.copyOf(value, value.length);
+        
+        // Recorre el array
+        for ( int i = 0; i < value.length; i++ ) {
+
+            // Generador de numeros aletorios
+            Random randomInt = new Random();
+
+            // Guarda un numero de 0 a lengitud de value en arrPos
+            int arrPos = randomInt.nextInt(value.length);
+
+            // si value[i] es menor que value[arrPos] los intercambia
+            if ( value[i] < value[arrPos] ) {
+
+                int temp = value[arrPos];
+
+                value[arrPos] = value[i];
+
+                value[i] = temp;
+                
+            }
+            
+        }
+
+        System.out.println("==========");
+        
+        System.out.print("Se desordeno el array: ");
+
+        for (int i = 0; i < value.length; i++) {
+
+            System.out.print(value[i] + " ");
+
+        }
+
+        System.out.print("\nEl array original era: ");
+
+        for (int i = 0; i < ogArr.length; i++) {
+
+            System.out.print(ogArr[i] + " ");
+
+        }
+        System.out.println("");
+
+    }
+
     public static void main(String[] args) {
 
         // Variables para usar más adelante
@@ -297,6 +346,7 @@ public class Parte2 {
         // closeAverage(ventas);
         sortDesc(ventas);
         sortAsc(ventas);
+        unsort(ventas);
 
     }
 
