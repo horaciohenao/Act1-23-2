@@ -1,5 +1,6 @@
 import java.util.Arrays;
 import java.util.Random;
+import java.util.ArrayList;
 
 public class Parte2 {
 
@@ -44,7 +45,7 @@ public class Parte2 {
 
         }
 
-        System.out.println("La menor venta fue de  " + low);
+        System.out.println("La menor venta fue de " + low);
     }
 
     // Funcion para obtener total de ventas
@@ -218,7 +219,7 @@ public class Parte2 {
             // Recorre nuevamente el array
             for ( int j = 0; j < value.length; j++ ) {
 
-                // si value[i] es menor que value[j] los intercambia
+                // Si value[i] es menor que value[j] los intercambia
                 if ( value[i] < value[j] ) {
 
                     int temp = value[j];
@@ -269,7 +270,7 @@ public class Parte2 {
             // Guarda un numero de 0 a lengitud de value en arrPos
             int arrPos = randomInt.nextInt(value.length);
 
-            // si value[i] es menor que value[arrPos] los intercambia
+            // Si value[i] es menor que value[arrPos] los intercambia
             if ( value[i] < value[arrPos] ) {
 
                 int temp = value[arrPos];
@@ -289,6 +290,68 @@ public class Parte2 {
         for (int i = 0; i < value.length; i++) {
 
             System.out.print(value[i] + " ");
+
+        }
+
+        System.out.print("\nEl array original era: ");
+
+        for (int i = 0; i < ogArr.length; i++) {
+
+            System.out.print(ogArr[i] + " ");
+
+        }
+        System.out.println("");
+
+    }
+
+    // Funcion para ordenar por pares e impares
+    public static void oddSort ( int[] value ) {
+        
+        // Crea una copia del array original
+        int[] ogArr = Arrays.copyOf(value, value.length);
+
+        // Crea dos arrays list para numeros pares e impares
+        ArrayList<Integer> odds = new ArrayList<>();
+        ArrayList<Integer> evns = new ArrayList<>();
+        
+        // Recorre el array
+        for (int i = 0; i < value.length; i++) {
+
+            // Si value[i] % 2 es igual a 0 se añade a la lista evns
+            if ((value[i] % 2) == 0) {
+
+                evns.add(value[i]);
+                
+            // Si no es par osea es impar se añade a la lista odds
+            } else {
+
+                odds.add(value[i]);
+
+            }
+
+        }
+        
+        // Crea una copia de los array list a arrays comunes
+        Integer[] oddsArrys = odds.toArray(new Integer[odds.size()]);
+        Integer[] evnsArrys = evns.toArray(new Integer[evns.size()]);
+        
+        System.out.println("==========");
+        
+        System.out.print("Se ordenaron los pares e impares del arrays");
+
+        System.out.print("\nImpares: ");
+
+        for (int i = 0; i < oddsArrys.length; i++) {
+
+            System.out.print(oddsArrys[i] + " ");
+
+        }
+
+        System.out.print("\nPares: ");
+
+        for (int i = 0; i < evnsArrys.length; i++) {
+
+            System.out.print(evnsArrys[i] + " ");
 
         }
 
@@ -347,6 +410,7 @@ public class Parte2 {
         sortDesc(ventas);
         sortAsc(ventas);
         unsort(ventas);
+        oddSort(ventas);
 
     }
 
