@@ -31,7 +31,7 @@ public class Parte3 {
     public static boolean findLang ( Object[][] value, String name ) {
 
         // Recorre la matriz
-        for (int fila = 0; fila < 5; fila++) {
+        for ( int fila = 0; fila < 5; fila++ ) {
                 
             // Si value en la fila y columna especifica es igual a name retornar true
             if ( value[fila][1].equals(name) ) {
@@ -51,7 +51,7 @@ public class Parte3 {
     public static String coordLang ( Object[][] value, String name ) {
 
         // Recorre la matriz
-        for (int fila = 0; fila < 5; fila++) {
+        for ( int fila = 0; fila < 5; fila++ ) {
                 
             // Si value en la fila y columna especifica es igual a name retornar un String
             if ( value[fila][1].equals(name) ) {
@@ -64,6 +64,38 @@ public class Parte3 {
 
         // Si luego de recorrer esta no retorna true entonces retornar null
         return "null";
+
+    }
+
+    // Realizar una función que reciba como parámetro una fila y retorne el registro completo (datos en la fila) del lenguaje en esa fila. Si la fila está errada (no existe en la matriz lenguajes) entonces, debe retornar una excepción con un mensaje informando el problema.
+    public static String[] rowPrint ( Object[][] value, int row ) throws Exception {
+
+        // Si el numero de la fila es invalido entonces lanza una excepcion con un mensaje personalizado
+        if ( row <= 0 || row >= 6) {
+
+            throw new Exception("El numero de filas ingresado no es valido");
+            
+        // De lo contrario
+        } else {
+
+            // Array para almacenar valores
+            String[] Valores = new String[8];
+            
+            // Recorre la matriz
+            for ( int fila = row; fila < row+1; fila++ ) {
+
+                for ( int columna = 1; columna < 8; columna++ ) {
+
+                    // Transforma un objeto de la matriz a string y lo guarda en la posicion columna de valores
+                    Valores[columna] = String.valueOf(value[row][columna]);
+
+                }
+                
+            }
+            
+            return Valores;
+            
+        }
 
     }
 
@@ -115,19 +147,48 @@ public class Parte3 {
         // Almacena el input del usuario en la fila y columna especifica de value
         valor = input.nextLine();
 
-        String ans = coordLang(lenguajes, valor);
+        // Almacena el resultado en una variable
+        String ansStr = coordLang(lenguajes, valor);
 
         // Si ans retorna null imprime
-        if (ans == "null") {
+        if (ansStr == "null") {
 
             System.out.println("El lenguaje " + valor + " no esta en la matriz (La funcion retorno NULL)");
         
         // De lo contrario imprime
         } else {
 
-            System.out.println(ans);
+            System.out.println(ansStr);
 
         }
+
+        System.out.println("Por favor ingrese una fila para imprimir: ");
+
+        // Almacena el input del usuario en la fila y columna especifica de value
+        int ansInt = input.nextInt();
+
+        // "intenta" ejecutar el codigo
+        try {
+            String[] rowString = rowPrint(lenguajes, ansInt);
+
+            // Si lo ejecuta correctamente imprime el array
+            System.out.print("Los valores de la fila son [ ");
+
+            for ( int i = 0; i < rowString.length; i++ ) {
+                
+                System.out.print(rowString[i] + " ");
+
+            }
+
+            System.out.print("]");
+
+        // Si ocurre un error lo "atrapa" y lo imprime en la cosola
+        } catch ( Exception e ) {
+
+            System.out.println("Error al ejecutar el codigo: " + e.getMessage());
+
+        }
+        
 
 
 
