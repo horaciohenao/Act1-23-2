@@ -47,10 +47,35 @@ public class Parte3 {
 
     }
 
+    // Realizar una función que reciba como parámetro el nombre de un lenguaje y retorna las coordenadas (fila, columna) si este se encuentra encuentra dentro de la matriz lenguajes, de lo contrario retorna null.
+    public static String coordLang ( Object[][] value, String name ) {
+
+        // Recorre la matriz
+        for (int fila = 0; fila < 5; fila++) {
+                
+            // Si value en la fila y columna especifica es igual a name retornar un String
+            if ( value[fila][1].equals(name) ) {
+
+                return (name + " se encuentra en las coordenadas: Fila " + fila + ", Columna 1 ");
+                
+            }
+
+        }
+
+        // Si luego de recorrer esta no retorna true entonces retornar null
+        return "null";
+
+    }
+
     public static void main(String[] args) {
         
         // Declarar e inicializar una matriz de 5 x 8 de tipo Object en una variable llamada lenguajes
         Object[][] lenguajes = new Object[5][8];
+
+
+
+
+
 
         // Se crea un scanner para el input de datos
         Scanner input = new Scanner(System.in);
@@ -65,6 +90,7 @@ public class Parte3 {
 
         }
 
+        // ejecuta la funcion lenguajes
         infoLenguajes(lenguajes);
 
         System.out.println("Por favor ingrese un lenguaje para buscar, RECUERDE QUE ES SENSIBLE A MAYUSCULAS: ");
@@ -75,14 +101,38 @@ public class Parte3 {
         // Si al ejecutar la funcion el valor que retorna es verdadero imprime
         if ( findLang(lenguajes, valor) ) {
 
-            System.out.println(valor + " esta en la matrix");
+            System.out.println(valor + " esta en la matriz");
             
         // De lo contrario imprime
         } else {
 
-            System.out.println(valor + " no esta en la matrix");
+            System.out.println(valor + " no esta en la matriz");
             
-        } 
+        }
+
+        System.out.println("Por favor ingrese un lenguaje para buscar sus coordenadas, RECUERDE QUE ES SENSIBLE A MAYUSCULAS: ");
+
+        // Almacena el input del usuario en la fila y columna especifica de value
+        valor = input.nextLine();
+
+        String ans = coordLang(lenguajes, valor);
+
+        // Si ans retorna null imprime
+        if (ans == "null") {
+
+            System.out.println("El lenguaje " + valor + " no esta en la matriz (La funcion retorno NULL)");
+        
+        // De lo contrario imprime
+        } else {
+
+            System.out.println(ans);
+
+        }
+
+
+
+
+
 
         input.close();
 
