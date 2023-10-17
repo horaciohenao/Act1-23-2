@@ -3,13 +3,13 @@ import java.util.Scanner;
 public class Parte3 {
 
     // Realizar una funcion llamada infoLenguajes que permita llenar la matriz lenguajes  con datos por teclado a partir de la segunda fila
-    public static void infoLenguajes ( Object[][] value ) {
+    public static void infoLenguajes ( Object[][] value ) { 
 
         // Se crea un scanner para el input de datos
         Scanner input = new Scanner(System.in);
 
         // Se crea un array simple para usar mas adelante
-        String datos[] = {"NOMBRE", "ANIO", "AUTOR", "DETALLES", "FRAMEWORKS"};
+        String datos[] = {"NOMBRE", "AÑO", "AUTOR", "DETALLES", "FRAMEWORKS"};
 
         // Recorre la matriz
         for ( int fila = 0; fila < 5; fila++ ) {
@@ -71,7 +71,7 @@ public class Parte3 {
     public static String[] rowPrint ( Object[][] value, int row ) throws Exception {
 
         // Si el numero de la fila es invalido entonces lanza una excepcion con un mensaje personalizado
-        if ( row <= 0 || row >= 6) {
+        if ( row <= -1 || row >= 5) {
 
             throw new Exception("El numero de filas ingresado no es valido");
             
@@ -99,6 +99,72 @@ public class Parte3 {
 
     }
 
+    // Realizar una función que reciba como parámetro una columna y retorne un todos los datos en esa columna. Si la columna está errada (no existe en la matriz lenguajes) entonces, debe retornar una excepción con un mensaje informando el problema
+    public static String[] colPrint ( Object[][] value, int col ) throws Exception {
+
+        // Si el numero de la fila es invalido entonces lanza una excepcion con un mensaje personalizado
+        if ( col <= -1 || col >= 8) {
+
+            throw new Exception("El numero de columnas ingresado no es valido");
+            
+        // De lo contrario
+        } else {
+
+            // Array para almacenar valores
+            String[] Valores = new String[5];
+            
+            // Recorre la matriz
+            for ( int fila = 0; fila < 5; fila++ ) {
+
+                    // Transforma un objeto de la matriz a string y lo guarda en la posicion columna de valores
+                    Valores[fila] = String.valueOf(value[fila][col]);
+            }
+            
+            return Valores;
+            
+        }
+
+    }
+
+    // Realizar una función que reciba como parámetro una fila y retorne el registro completo (datos en la fila) del lenguaje en esa fila. Si la fila está errada (no existe en la matriz lenguajes) entonces, debe retornar una excepción con un mensaje informando el problema.
+    public static String[] coordPrint ( Object[][] value, int row, int col ) throws Exception {
+
+        // Si el numero de la fila es invalido entonces lanza una excepcion con un mensaje personalizado
+        if ( row <= -1 || row >= 5) {
+
+            throw new Exception("El numero de filas ingresado no es valido");
+            
+        // De lo contrario si el numero de la fila es invalido entonces lanza una excepcion con un mensaje personalizado
+        } else  if ( col <= -1 || col >= 8) {
+
+            throw new Exception("El numero de columnas ingresado no es valido");
+            
+        // De lo contrario
+        } else {
+
+            // Array para almacenar valores
+            String[] Valores = new String[9];
+
+            Valores[0] = "El valor en la coordenada " + row + ", " + col + " es: " + value[row][col];
+            
+            // Recorre la matriz
+            for ( int fila = row; fila < row+1; fila++ ) {
+
+                for ( int columna = 1; columna < 8; columna++ ) {
+
+                    // Transforma un objeto de la matriz a string y lo guarda en la posicion columna de valores
+                    Valores[columna+1] = String.valueOf(value[row][columna]);
+
+                }
+                
+            }
+            
+            return Valores;
+            
+        }
+
+    }
+
     public static void main(String[] args) {
         
         // Declarar e inicializar una matriz de 5 x 8 de tipo Object en una variable llamada lenguajes
@@ -112,8 +178,8 @@ public class Parte3 {
         // Se crea un scanner para el input de datos
         Scanner input = new Scanner(System.in);
 
-        // A la primera linea de la matriz lenguajes se debe asignar los siguientes valores en ese orden: [NOMBRE, ANIO, AUTOR, DETALLES, FRAMEWORKS]
-        String datos[] = {"NOMBRE", "ANIO", "AUTOR", "DETALLES", "FRAMEWORKS"};
+        // A la primera linea de la matriz lenguajes se debe asignar los siguientes valores en ese orden: [NOMBRE, AÑO, AUTOR, DETALLES, FRAMEWORKS]
+        String datos[] = {"NOMBRE", "AÑO", "AUTOR", "DETALLES", "FRAMEWORKS"};
 
         // Recorre la primera fila y agrega los valores de datos en la matrix
         for ( int fila = 0; fila < 5; fila++ ) {
@@ -121,6 +187,8 @@ public class Parte3 {
             lenguajes[fila][0] = datos[fila];
 
         }
+
+
 
         // ejecuta la funcion lenguajes
         infoLenguajes(lenguajes);
@@ -180,7 +248,7 @@ public class Parte3 {
 
             }
 
-            System.out.print("]");
+            System.out.print("]\n");
 
         // Si ocurre un error lo "atrapa" y lo imprime en la cosola
         } catch ( Exception e ) {
@@ -189,7 +257,67 @@ public class Parte3 {
 
         }
         
+        System.out.println("Por favor ingrese una columna para imprimir: ");
 
+        // Almacena el input del usuario en la fila y columna especifica de value
+        ansInt = input.nextInt();
+
+        // "intenta" ejecutar el codigo
+        try {
+            String[] rowString = colPrint(lenguajes, ansInt);
+
+            // Si lo ejecuta correctamente imprime el array
+            System.out.print("Los valores de la columna son [ ");
+
+            for ( int i = 0; i < rowString.length; i++ ) {
+                
+                System.out.print(rowString[i] + " ");
+
+            }
+
+            System.out.print("]\n");
+
+        // Si ocurre un error lo "atrapa" y lo imprime en la cosola
+        } catch ( Exception e ) {
+
+            System.out.println("Error al ejecutar el codigo: " + e.getMessage());
+
+        }
+
+        System.out.println("Por favor ingrese una coordenada para una fila: ");
+
+        // Almacena el input del usuario en la fila y columna especifica de value
+        ansInt = input.nextInt();
+
+        System.out.println("Por favor ingrese una segunda coordenada para una columna: ");
+
+        // Almacena el input del usuario en la fila y columna especifica de value
+        int ansInt2 = input.nextInt();
+
+        // "intenta" ejecutar el codigo
+        try {
+            String[] rowString = coordPrint(lenguajes, ansInt, ansInt2);
+
+            System.out.println(rowString[0]);
+
+            // Si lo ejecuta correctamente imprime el array
+            System.out.print("Los valores de la fila son [ ");
+
+            for ( int i = 1; i < rowString.length; i++ ) {
+                
+                System.out.print(rowString[i] + " ");
+
+            }
+
+            System.out.print("]\n");
+
+        // Si ocurre un error lo "atrapa" y lo imprime en la cosola
+        } catch ( Exception e ) {
+
+            System.out.println("Error al ejecutar el codigo: " + e.getMessage());
+
+        }
+        
 
 
 
