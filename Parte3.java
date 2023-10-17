@@ -165,15 +165,54 @@ public class Parte3 {
 
     }
 
+    // Realizar una función que permita mostrar los datos de la matriz lenguajes  según la siguiente logica
+    // La función de debe recibir como parámetro un arreglo con 5 elementos de tipo boolean
+    public static String[][] boolInfo ( Object[][] value, boolean[] bools ) {
+
+        int trues = 0;
+
+        // Cuenta el numero de trues en el arrray bool
+        for ( int i = 0; i < bools.length; i++ ) {
+
+            if ( bools[i] ) {
+
+                trues++;
+
+            }
+
+        }
+
+        // crea un string con "trues" filas y 8 columnas
+        String[][] Valores = new String[trues][8];
+        
+        int index = 0;
+        
+        // Recorre la matriz
+        for ( int fila = 0; fila < 5; fila++ ) {
+
+            if ( bools[fila] ) {
+    
+                for ( int columna = 0; columna < 8; columna++ ) {
+
+                    Valores[index][columna] = value[fila][columna].toString();
+                    
+                }
+
+                index++;
+
+            }
+
+        }
+        
+        // Al invocar la función se debe mostrar solo la información de la matriz lenguajes de acuerdo al valor (false o true) que tenga el arreglo que recibe como parámetro.
+        return Valores;
+        
+    }
+
     public static void main(String[] args) {
         
         // Declarar e inicializar una matriz de 5 x 8 de tipo Object en una variable llamada lenguajes
         Object[][] lenguajes = new Object[5][8];
-
-
-
-
-
 
         // Se crea un scanner para el input de datos
         Scanner input = new Scanner(System.in);
@@ -187,8 +226,6 @@ public class Parte3 {
             lenguajes[fila][0] = datos[fila];
 
         }
-
-
 
         // ejecuta la funcion lenguajes
         infoLenguajes(lenguajes);
@@ -317,11 +354,41 @@ public class Parte3 {
             System.out.println("Error al ejecutar el codigo: " + e.getMessage());
 
         }
-        
 
+        // Arreglo de booleanos para seleccionar las filas
+        boolean[] bools = {true, false, true, false, true};
 
+        String[][] newMatrix = boolInfo(lenguajes, bools);
 
+        int trues = 0;
 
+        // Cuenta el numero de trues en el arrray bool
+        for ( int i = 0; i < bools.length; i++ ) {
+
+            if ( bools[i] ) {
+
+                trues++;
+
+            }
+
+        }
+
+        // Si lo ejecuta correctamente imprime el array
+        System.out.println("Los valores de la matrix a imprimr son ");
+
+        // 
+        for ( int fila = 0; fila < trues; fila++ ) {
+
+            for ( int columna = 0; columna < 8; columna++ ) {
+
+                System.out.print(newMatrix[fila][columna] + " \t");
+
+            }
+
+            System.out.println(); 
+        }
+
+        System.out.print("\n");
 
         input.close();
 
