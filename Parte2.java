@@ -379,19 +379,19 @@ public class Parte2 {
         int[] ventas = new int[ randomInt.nextInt(50) ];
 
         // Llenar el arreglo ventas con valores aleatorios entre 1 y 1000
-        for (int i = 0; i < ventas.length; i++) {
+        for ( int i = 0; i < ventas.length; i++ ) {
             ventas[i] = randomInt.nextInt(1000) + 1;
         }
 
         // Imprimir los valores de intArray
         System.out.println("\nVentas realizadas:");
-        for (int i = 0; i < ventas.length; i++) {
+        for ( int i = 0; i < ventas.length; i++ ) {
             System.out.print("Venta n" + (i+1) + ": " + ventas[i] + "\n");
         }
-        System.out.println("Total de ventas: " + ventas.length);
+        System.out.println("Total de ventas: " + (ventas.length+1));
 
         // Recorre el array
-        for (int i = 0; i < ventas.length; i++) {
+        for ( int i = 0; i < ventas.length; i++ ) {
             // Sumarle a promedio de venta el valor del array en i
             promedio += ventas[i];
         }
