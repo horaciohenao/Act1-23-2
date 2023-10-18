@@ -376,7 +376,7 @@ public class Parte2 {
         
         // Declarar un arreglo de enteros en una variable llamada ventas,
         // Inicializar el arreglo ventas con una cantidad aleatoria de elementos.
-        int[] ventas = new int[ randomInt.nextInt(50) ];
+        int[] ventas = new int[ randomInt.nextInt(50) + 1 ];
 
         // Llenar el arreglo ventas con valores aleatorios entre 1 y 1000
         for ( int i = 0; i < ventas.length; i++ ) {
@@ -388,7 +388,7 @@ public class Parte2 {
         for ( int i = 0; i < ventas.length; i++ ) {
             System.out.print("Venta n" + (i+1) + ": " + ventas[i] + "\n");
         }
-        System.out.println("Total de ventas: " + (ventas.length+1));
+        System.out.println("Total de ventas: " + ventas.length);
 
         // Recorre el array
         for ( int i = 0; i < ventas.length; i++ ) {
