@@ -376,8 +376,7 @@ public class Parte2 {
         
         // Declarar un arreglo de enteros en una variable llamada ventas,
         // Inicializar el arreglo ventas con una cantidad aleatoria de elementos.
-        int[] ventas = new int[ 5 ];
-        // int[] ventas = new int[ randomInt.nextInt(50) ];
+        int[] ventas = new int[ randomInt.nextInt(50) ];
 
         // Llenar el arreglo ventas con valores aleatorios entre 1 y 1000
         for (int i = 0; i < ventas.length; i++) {
