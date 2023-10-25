@@ -24,6 +24,7 @@ public class Parte2 {
         }
 
         System.out.println("La mayor venta fue de " + high);
+
     }
 
     // Funcion para buscar valor más bajo
@@ -46,6 +47,7 @@ public class Parte2 {
         }
 
         System.out.println("La menor venta fue de " + low);
+    
     }
 
     // Funcion para obtener total de ventas
@@ -255,7 +257,7 @@ public class Parte2 {
 
     }
 
-    // Funcion para ordenar de forma ascendente
+    // Funcion para desordenar
     public static void unsort ( int[] value ) {
 
         // Crea una copia del array original
@@ -309,6 +311,27 @@ public class Parte2 {
         
         // Crea una copia del array original
         int[] ogArr = Arrays.copyOf(value, value.length);
+                
+        // Recorre el array
+        for ( int i = 0; i < value.length; i++ ) {
+
+            // Recorre nuevamente el array
+            for ( int j = 0; j < value.length; j++ ) {
+
+                // Si value[i] es menor que value[j] los intercambia
+                if ( value[i] < value[j] ) {
+
+                    int temp = value[j];
+
+                    value[j] = value[i];
+
+                    value[i] = temp;
+                    
+                }
+                
+            }
+            
+        }
 
         // Crea dos arrays list para numeros pares e impares
         ArrayList<Integer> odds = new ArrayList<>();
@@ -405,7 +428,7 @@ public class Parte2 {
         lowSell(ventas);
         totalSell(ventas);
         averagePrice(ventas);
-        // closeAverage(ventas);
+        closeAverage(ventas);
         sortDesc(ventas);
         sortAsc(ventas);
         unsort(ventas);
